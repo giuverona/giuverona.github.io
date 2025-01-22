@@ -8,8 +8,7 @@
 	<meta property="og:title" content="Giulia Verona - Geographer, Expert in Italian Studies and Literature" />
 	<meta property="og:type" content="profile" />
 	<meta property="og:url" content="giuverona.github.io" />
-	<meta property="og:image"
-		content="assets/css/images/GiuliaFoto.jpg" />
+	<meta property="og:image" content="assets/css/images/GiuliaFoto.jpg" />
 	<meta property="og:description" content="Welcome to the GIS portfolio of Giulia Verona" />
 	<meta property="og:site_name" content="Giulia Verona's Portfolio" />
 	<meta property="profile:first_name" content="Giulia" />
@@ -179,18 +178,22 @@
 					Associated with the Casilino Ad Duas Lauros Ecomuseum</p>
 				<p>(March-May 2022)
 					Link to the project – accessible only via Wayback Machine</p>
-					<img class="image fit picmb" src="assets/css/images/LogoEcomuseo.png" alt="Ecomuseo Logo">
+				<img class="image fit picmb" src="assets/css/images/LogoEcomuseo.png" alt="Ecomuseo Logo">
 				<div class="row">
 					<div class="col-6 col-6-medium col-12-small">
 						<img class="image fit picmb" src="assets/css/images/Ecomuseo.png" alt="Ecomuseo Progetto">
 					</div>
 					<div class="col-6 col-6-medium col-12-small">
-						<p>During the educational workshops at Pisacane Elementary School, my colleagues and I introduced the theme of water from a geographical perspective, focusing on the hydrological aspects of the Torpignattara neighborhood (East Rome).</p>
+						<p>During the educational workshops at Pisacane Elementary School, my colleagues and I
+							introduced the theme of water from a geographical perspective, focusing on the hydrological
+							aspects of the Torpignattara neighborhood (East Rome).</p>
 
 					</div>
 				</div>
 
-						<p>We provided the school classes with blank maps and supervised their geography lessons, assisting the children in populating the maps. Each group was given the freedom to enrich the maps with points of interest of their choice, as long as they were water-related.</p>
+				<p>We provided the school classes with blank maps and supervised their geography lessons, assisting the
+					children in populating the maps. Each group was given the freedom to enrich the maps with points of
+					interest of their choice, as long as they were water-related.</p>
 
 			</article>
 
@@ -205,14 +208,21 @@
 				<p>Demo Produced for School Tours of the I. Kant High School in Rome (November-December 2021)</p>
 				<div class="row">
 					<div class="col-6 col-6-medium col-12-small">
-							<img class="image fit picmb" src="assets/css/images/monumnentiaperti.png" alt="Monumenti Aperti">
+						<img class="image fit picmb" src="assets/css/images/monumnentiaperti.png"
+							alt="Monumenti Aperti">
 					</div>
 					<div class="col-6 col-6-medium col-12-small">
-						<p>A web map created in preparation for the guided tours organized by the students of I. Kant High School in Rome.</p>
-						<p>After a series of theoretical and hands-on lessons on geography, historical outreach, and the history of the Casilino neighborhood in Rome, I developed this map as a guide for the student groups leading the tours. The aim was to provide them with suggestions on which stops to include in their tours, what multimedia sources to prepare, and how to present their findings effectively.</p>
+						<p>A web map created in preparation for the guided tours organized by the students of I. Kant
+							High School in Rome.</p>
+						<p>After a series of theoretical and hands-on lessons on geography, historical outreach, and the
+							history of the Casilino neighborhood in Rome, I developed this map as a guide for the
+							student groups leading the tours. The aim was to provide them with suggestions on which
+							stops to include in their tours, what multimedia sources to prepare, and how to present
+							their findings effectively.</p>
 					</div>
 				</div>
-				<iframe style="height: 500px; width: 100%;" src="assets/MappaKant/index.html#16/41.8769/12.5484" frameborder="0"></iframe>
+				<iframe style="height: 500px; width: 100%;" src="assets/MappaKant/index.html#16/41.8769/12.5484"
+					frameborder="0"></iframe>
 
 
 
@@ -251,7 +261,8 @@
 					aqueducts) as well as more recent structures like manor houses and towers, which today define the
 					toponymy of some areas in Rome.</p>
 
-					<iframe style="height: 700px; width: 100%;" src="assets/Cadastre/index.html#13/41.8789/12.5657" frameborder="0"></iframe>
+				<iframe style="height: 700px; width: 100%;" src="assets/Cadastre/index.html#13/41.8789/12.5657"
+					frameborder="0"></iframe>
 
 			</article>
 			<!-- Project 1 -->
@@ -283,28 +294,69 @@
 				<header>
 					<h2>Contact Me</h2>
 				</header>
-				<form action="#" method="post">
+				<form action="#" method="POST" id="form">
 					<div>
 						<div class="row">
+							<input type="hidden" name="access_key" value="375d2c39-5ca0-4819-9112-5ff8c770db73">
 							<div class="col-6 col-12-medium">
-								<input type="text" name="name" placeholder="Name" />
+								<input type="text" name="name" placeholder="Name" required />
 							</div>
 							<div class="col-6 col-12-medium">
-								<input type="text" name="email" placeholder="Email" />
+								<input type="email" name="email" placeholder="Email" required />
 							</div>
 							<div class="col-12">
 								<input type="text" name="subject" placeholder="Subject" />
 							</div>
 							<div class="col-12">
-								<textarea name="message" placeholder="Message" rows="6"></textarea>
+								<textarea name="message" placeholder="Message" rows="6" required></textarea>
 							</div>
 							<div class="col-12">
 								<input type="submit" value="Send Message" />
 							</div>
+							<div id="result"></div>
 						</div>
 					</div>
 				</form>
-				<p id="formMessage" style="color: green; display: none;">Your message has been sent successfully!</p>
+				<script>
+					const form = document.getElementById('form');
+					const result = document.getElementById('result');
+
+					form.addEventListener('submit', function (e) {
+						e.preventDefault();
+						const formData = new FormData(form);
+						const object = Object.fromEntries(formData);
+						const json = JSON.stringify(object);
+						result.innerHTML = "Please wait..."
+
+						fetch('https://api.web3forms.com/submit', {
+							method: 'POST',
+							headers: {
+								'Content-Type': 'application/json',
+								'Accept': 'application/json'
+							},
+							body: json
+						})
+							.then(async (response) => {
+								let json = await response.json();
+								if (response.status == 200) {
+									result.innerHTML = "Form submitted successfully";
+								} else {
+									console.log(response);
+									result.innerHTML = json.message;
+								}
+							})
+							.catch(error => {
+								console.log(error);
+								result.innerHTML = "Something went wrong!";
+							})
+							.then(function () {
+								form.reset();
+								setTimeout(() => {
+									result.style.display = "none";
+								}, 3000);
+							});
+					});
+				</script>
 			</article>
 
 		</div>
