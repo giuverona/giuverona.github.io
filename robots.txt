@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /assets/
+Disallow: /assets/css/
+Disallow: /assets/js/
+Allow: /
+
+Sitemap: https://giuverona.github.io/sitemap.xml
